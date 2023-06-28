@@ -11,12 +11,14 @@ void setup()
 
 void loop() 
 {
-  int n,num1,num2;
+  int num1,num2;
+  char m;
   float out;
   while(Serial.available()>0)
   {
-    n = Serial.parseInt();
-    Serial.println(n);
+    Serial.println("Enter your choice: ");
+    m = Serial.read();
+    Serial.println(m);
     delay(500);
     num1 = Serial.parseInt();
     Serial.println(num1);
@@ -25,38 +27,43 @@ void loop()
     Serial.println(num2);
     delay(500);
   }
-  switch(n)
+  switch(m)
   {
-    case 1:
+    case '+':
     out = num1+num2;
-    Serial.printf("Calculated Result: %f\n",out);
+    Serial.printf("Calculated Result: %0.1f\n",out);
+    m = 5;
     break;
-    case 2:
+    case '-':
     out = num1-num2;
-    Serial.printf("Calculated Result: %f\n",out);
+    Serial.printf("Calculated Result: %0.1f\n",out);
+    m = 5;
     break;
-    case 3:
+    case '*':
     out = num1*num2;
-    Serial.printf("Calculated Result: %f\n",out);
+    Serial.printf("Calculated Result: %0.1f\n",out);
+    m = 5;
     break;
-    case 4:
+    case '/':
     if(num2 != 0){
     out = num1/num2;
-    Serial.printf("Calculated Result: %f\n",out);
+    Serial.printf("Calculated Result: %0.1f\n",out);
     }
     else
     {
       Serial.println("Infinite");
     }
+    m = 5;
     break;
     case 5:
     Serial.print(".");
     break;
     default:
-    Serial.println("Input a valid choice");
+    Serial.println("Enter your choice: ");
+    m = 5;
     break;
   }
-  n = 5;
+  delay(1000);
 
 }
 
